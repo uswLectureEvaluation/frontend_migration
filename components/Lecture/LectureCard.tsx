@@ -2,8 +2,8 @@ import { Flex, Text, useDisclosure, VStack } from '@chakra-ui/react';
 
 import { LectureCard as Lecture } from '@/interfaces/lecture';
 
-import Chip from './Common/Chip';
-import Stars from './Stars';
+import Chip from '../Common/Chip';
+import Stars from '../Common/Stars';
 
 const LectureCard = ({ lecture }: { lecture: Lecture }) => {
   const { isOpen, onToggle } = useDisclosure();

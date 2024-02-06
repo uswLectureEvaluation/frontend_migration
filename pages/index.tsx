@@ -2,8 +2,8 @@ import { VStack } from '@chakra-ui/react';
 import { dehydrate, QueryClient } from 'react-query';
 
 import { getMainLecture } from '@/apis/lecture';
-import LectureList from '@/components/LectureList';
-import LectureSearch from '@/components/LectureSearch';
+import LectureList from '@/components/Lecture/LectureList';
+import LectureSearch from '@/components/Lecture/LectureSearch';
 import MainBanner from '@/components/Main/Banner';
 import { LECTURE_MAIN } from '@/constants/queryKeys';
 
