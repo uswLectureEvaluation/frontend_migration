@@ -1,6 +1,6 @@
-import { Flex, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
 
-import LectureCard from '@/components/LectureCard';
+import LectureList from '@/components/LectureList';
 import LectureSearch from '@/components/LectureSearch';
 import MainBanner from '@/components/Main/Banner';
 
@@ -8,12 +8,9 @@ import MainBanner from '@/components/Main/Banner';
 const Home = () => (
   <VStack w="100%" minH="100vh" spacing="50px" pb="100px">
     <MainBanner />
-    <VStack w="60%">
+    <VStack w="60%" spacing="30px">
       <LectureSearch />
-      <Flex w="100%" justify="space-between" gap="24px">
-        <LectureCard />
-        <LectureCard />
-      </Flex>
+      <LectureList />
     </VStack>
   </VStack>
 );

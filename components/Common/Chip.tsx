@@ -10,6 +10,7 @@ const Chip = ({ children, ...props }: ChipProps) => (
     bg="lightgray.200"
     borderRadius="10px"
     fontSize="12px"
+    fontWeight="500"
     {...props}
   >
     {children}

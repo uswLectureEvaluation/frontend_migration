@@ -34,7 +34,7 @@ const LectureSearch = () => {
           ref={inputRef}
           h="50px"
           variant="unstyled"
-          borderBottom="1px solid"
+          borderBottom="2px solid"
           borderColor="lightgray.800"
           borderRadius="0"
           placeholder="강의명, 교수명으로 원하는 강의평가를 찾아보세요"
