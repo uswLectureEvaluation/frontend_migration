@@ -1,16 +1,28 @@
 import { useQuery } from 'react-query';
 
 import { getMainLecture } from '@/apis/lecture';
-import { LECTURE_MAIN } from '@/constants/queryKeys';
+import { getMajorType } from '@/apis/suwiki';
+import { LECTURE_MAIN, MAJOR_TYPES } from '@/constants/queryKeys';
 import { LectureOptions } from '@/interfaces/lecture';
 
-/* eslint-disable import/prefer-default-export */
 export const useGetMainLectureList = (
   option: LectureOptions = 'modifiedDate',
   majorType: string = '전체'
 ) => {
-  const { data, isLoading } = useQuery([LECTURE_MAIN, option, majorType], () =>
-    getMainLecture(option, majorType)
+  const query = useQuery(
+    [LECTURE_MAIN, option, majorType],
+    () => getMainLecture(option, majorType),
+    {
+      keepPreviousData: true,
+    }
   );
-  return { data, isLoading };
+  return query;
+};
+
+export const useGetMajorTypes = () => {
+  const query = useQuery([MAJOR_TYPES], getMajorType, {
+    cacheTime: Infinity,
+    staleTime: Infinity,
+  });
+  return query;
 };

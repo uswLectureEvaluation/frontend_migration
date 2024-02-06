@@ -5,6 +5,9 @@ const API_URLS = {
     SEARCH: '/lecture/search',
     DETAIL: '/lecture',
   },
+  SUWIKI: {
+    MAJOR_TYPE: '/suwiki/majorType',
+  },
 };
 
 export default API_URLS;
