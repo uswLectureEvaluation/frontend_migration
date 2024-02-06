@@ -7,12 +7,14 @@ import LectureList from '@/components/Lecture/LectureList';
 import LectureSearch from '@/components/Lecture/LectureSearch';
 import MajorFilter from '@/components/Lecture/MajorFilter';
 import MainBanner from '@/components/Main/Banner';
+import SEO from '@/components/SEO';
 import { LECTURE_MAIN } from '@/constants/queryKeys';
 import { LectureOptions } from '@/interfaces/lecture';
 
 // 메인 페이지
 const Home = () => (
   <VStack w="100%" minH="100vh" spacing="50px" pb="100px">
+    <SEO title="수위키 - 강의평가의 모든 것, SUWIKI" />
     <MainBanner />
     <VStack w="60%" spacing="30px">
       <LectureSearch />
