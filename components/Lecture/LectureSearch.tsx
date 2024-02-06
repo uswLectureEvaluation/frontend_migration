@@ -1,21 +1,13 @@
-import {
-  Input,
-  InputGroup,
-  InputRightElement,
-  Text,
-  VStack,
-} from '@chakra-ui/react';
-import { useRef } from 'react';
+import { Text, VStack } from '@chakra-ui/react';
 
-import { Search } from '@/public/icon/icon';
+import useInput from '@/hooks/useInput';
+
+import SearchInput from '../Common/SearchInput';
 
 const LectureSearch = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
-
+  const { value, onChange } = useInput();
   const search = () => {
-    if (inputRef.current) {
-      console.log(inputRef.current.value);
-    }
+    console.log(value);
   };
 
   const onEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -29,22 +21,13 @@ const LectureSearch = () => {
       <Text fontSize="20px" fontWeight="500">
         강의평가 검색
       </Text>
-      <InputGroup w="100%">
-        <Input
-          ref={inputRef}
-          h="50px"
-          variant="unstyled"
-          borderBottom="2px solid"
-          borderColor="lightgray.800"
-          borderRadius="0"
-          placeholder="강의명, 교수명으로 원하는 강의평가를 찾아보세요"
-          fontSize="14px"
-          onKeyDown={onEnterKeyDown}
-        />
-        <InputRightElement h="50px">
-          <Search w="24px" h="24px" cursor="pointer" onClick={search} />
-        </InputRightElement>
-      </InputGroup>
+      <SearchInput
+        placeholder="강의명, 교수명으로 원하는 강의평가를 찾아보세요"
+        value={value}
+        onChange={onChange}
+        onKeyDown={onEnterKeyDown}
+        onClick={search}
+      />
     </VStack>
   );
 };
