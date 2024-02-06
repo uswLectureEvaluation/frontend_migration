@@ -1,8 +1,11 @@
 import { VStack } from '@chakra-ui/react';
+import { dehydrate, QueryClient } from 'react-query';
 
+import { getMainLecture } from '@/apis/lecture';
 import LectureList from '@/components/LectureList';
 import LectureSearch from '@/components/LectureSearch';
 import MainBanner from '@/components/Main/Banner';
+import { LECTURE_MAIN } from '@/constants/queryKeys';
 
 // 메인 페이지
 const Home = () => (
@@ -16,3 +19,30 @@ const Home = () => (
 );
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
+  try {
+    await queryClient.prefetchQuery(
+      [LECTURE_MAIN, 'modifiedDate', '전체'],
+      () => getMainLecture()
+    );
+    return {
+      props: {
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  } finally {
+    queryClient.clear();
+  }
+};
