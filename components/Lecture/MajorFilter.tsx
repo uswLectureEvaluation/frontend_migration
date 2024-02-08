@@ -80,18 +80,18 @@ const MajorFilter = () => {
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.3)" />
-        <ModalContent w="100%" bg="none" boxShadow="none">
+        <ModalContent minW="100%" p="0" bg="none" boxShadow="none">
           <ModalBody w="100%" display="flex" justifyContent="center">
             <VStack
-              minW="500px"
-              h="570px"
+              w={{ base: '100%', sm: '500px' }}
+              h={{ base: '550px', sm: '570px' }}
               bg="standard.white"
               borderRadius="15px"
               spacing="24px"
             >
               <Flex
                 w="100%"
-                p="20px 28px"
+                p={{ base: '15px 20px', sm: '20px 28px' }}
                 justify="space-between"
                 align="center"
                 borderBottom="1px solid"
@@ -106,7 +106,11 @@ const MajorFilter = () => {
                   onClick={onClose}
                 />
               </Flex>
-              <VStack w="100%" p="0 28px" spacing="36px">
+              <VStack
+                w="100%"
+                p={{ base: '0 20px', sm: '0 28px' }}
+                spacing="36px"
+              >
                 <SearchInput
                   placeholder="개설학과를 검색하세요."
                   value={searchText}
@@ -171,7 +175,10 @@ const MajorFilter = () => {
                     ))}
                   </VStack>
                 </VStack>
-                <SuwikiButton w="380px" onClick={handleMajorFilter}>
+                <SuwikiButton
+                  w={{ base: '100%', sm: '380px' }}
+                  onClick={handleMajorFilter}
+                >
                   확인
                 </SuwikiButton>
               </VStack>
