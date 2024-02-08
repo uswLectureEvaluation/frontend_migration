@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
@@ -23,8 +23,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider theme={colorTheme}>
-          <Header />
-          <Component {...pageProps} />
+          <Box w="100%" pt="79px">
+            <Header />
+            <Component {...pageProps} />
+          </Box>
         </ChakraProvider>
       </Hydrate>
     </QueryClientProvider>

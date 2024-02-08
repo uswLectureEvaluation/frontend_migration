@@ -23,6 +23,10 @@ const LectureSearch = () => {
       </Text>
       <SearchInput
         placeholder="강의명, 교수명으로 원하는 강의평가를 찾아보세요"
+        _placeholder={{
+          color: 'lightgray.800',
+          fontSize: { base: '14px', sm: '16px' },
+        }}
         value={value}
         onChange={onChange}
         onKeyDown={onEnterKeyDown}
