@@ -6,6 +6,7 @@ import { getMainLecture } from '@/apis/lecture';
 import LectureList from '@/components/Lecture/LectureList';
 import LectureSearch from '@/components/Lecture/LectureSearch';
 import MajorFilter from '@/components/Lecture/MajorFilter';
+import OptionFilter from '@/components/Lecture/OptionFilter';
 import MainBanner from '@/components/Main/Banner';
 import SEO from '@/components/SEO';
 import { LECTURE_MAIN } from '@/constants/queryKeys';
@@ -21,6 +22,7 @@ const Home = () => (
       <VStack w="100%" spacing="10px" align="flex-start">
         <Flex gap="5px" align="center">
           <MajorFilter />
+          <OptionFilter />
         </Flex>
         <LectureList />
       </VStack>

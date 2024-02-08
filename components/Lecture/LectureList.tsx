@@ -2,13 +2,14 @@ import { Flex, VStack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
 import { useGetMainLectureList } from '@/features/queries';
+import { LectureOptions } from '@/interfaces/lecture';
 
 import LectureCard from './LectureCard';
 
 const LectureList = () => {
   const { query } = useRouter();
   const { data: lectures } = useGetMainLectureList(
-    undefined,
+    query.option as LectureOptions,
     query.majorType as string
   );
   const totalLectures = lectures?.data;

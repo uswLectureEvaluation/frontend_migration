@@ -73,8 +73,12 @@ const MajorFilter = () => {
       onClick={onOpen}
     >
       <Flex gap="10px" align="center">
-        <Text fontSize="15px">개설학과</Text>
-        <Text color="main.blue">{currentMajor}</Text>
+        <Text minW="55px" fontSize="15px">
+          개설학과
+        </Text>
+        <Text color="main.blue" noOfLines={1}>
+          {currentMajor}
+        </Text>
       </Flex>
       <ArrowDown w="24px" h="24px" />
 
