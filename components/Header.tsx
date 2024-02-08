@@ -21,7 +21,9 @@ const Header = () => {
       zIndex="100"
     >
       <Flex w="60%" justify="space-between" align="center">
-        <Image alt="logo" src="/icon/logo.svg" width={120} height={38} />
+        <Link href="/" passHref>
+          <Image alt="logo" src="/icon/logo.svg" width={120} height={38} />
+        </Link>
         <Flex gap="30px" align="center">
           <Link href="/notice">공지사항</Link>
           <Link href="/login">로그인</Link>
