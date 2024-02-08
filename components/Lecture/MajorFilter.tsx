@@ -82,12 +82,12 @@ const MajorFilter = () => {
       </Flex>
       <ArrowDown w="24px" h="24px" />
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal isOpen={isOpen} onClose={onClose} isCentered closeOnOverlayClick>
         <ModalOverlay bg="rgba(0, 0, 0, 0.3)" />
-        <ModalContent minW="100%" p="0" bg="none" boxShadow="none">
+        <ModalContent w="100%" p="0" bg="none" boxShadow="none">
           <ModalBody w="100%" display="flex" justifyContent="center">
             <VStack
-              w={{ base: '100%', sm: '500px' }}
+              minW={{ base: '100%', sm: '500px' }}
               h={{ base: '550px', sm: '570px' }}
               bg="standard.white"
               borderRadius="15px"
