@@ -47,8 +47,9 @@ const etc = {
     },
   },
   breakpoints: {
-    sm: '0px',
-    md: '520px',
+    base: '0px',
+    sm: '550px',
+    md: '750px',
     lg: '1024px',
     xl: '1300px',
   },

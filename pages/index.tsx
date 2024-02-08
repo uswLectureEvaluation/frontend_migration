@@ -14,9 +14,9 @@ import { LectureOptions } from '@/interfaces/lecture';
 // 메인 페이지
 const Home = () => (
   <VStack w="100%" minH="100vh" spacing="50px" pb="100px">
-    <SEO title="수위키 - 강의평가의 모든 것, SUWIKI" />
+    <SEO title="수위키 - 강의평가의 모든 것, SUWKI" />
     <MainBanner />
-    <VStack w="60%" spacing="30px">
+    <VStack w={{ base: '90%', lg: '60%' }} spacing="30px">
       <LectureSearch />
       <VStack w="100%" spacing="10px" align="flex-start">
         <Flex gap="5px" align="center">

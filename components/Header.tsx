@@ -13,14 +13,18 @@ const Header = () => {
       p="20px 0"
       justify="center"
       align="center"
-      pos={isHome ? 'relative' : 'sticky'}
+      pos={isHome ? { base: 'sticky', sm: 'relative' } : 'sticky'}
       top="0"
-      backdropFilter="blur(10px)"
+      backdropFilter="blur(15px)"
       borderBottom="1px solid"
       borderColor="lightgray.400"
       zIndex="100"
     >
-      <Flex w="60%" justify="space-between" align="center">
+      <Flex
+        w={{ base: '90%', lg: '60%' }}
+        justify="space-between"
+        align="center"
+      >
         <Link href="/" passHref>
           <Image alt="logo" src="/icon/logo.svg" width={120} height={38} />
         </Link>
