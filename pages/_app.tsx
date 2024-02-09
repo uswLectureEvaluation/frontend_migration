@@ -2,6 +2,7 @@ import { Box, ChakraProvider } from '@chakra-ui/react';
 import type { AppProps } from 'next/app';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 import Header from '@/components/Header';
 import { colorTheme } from '@/public/theme/theme';
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </Box>
         </ChakraProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </Hydrate>
     </QueryClientProvider>
   );
