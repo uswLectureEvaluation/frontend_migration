@@ -27,12 +27,13 @@ const MajorFilter = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { value: searchText, onChange } = useInput();
 
+  const majors = ['전체', ...(data?.data || [])];
+  const isMajorsEmpty = majors.length === 1;
   const currentMajor = (query.majorType as string) || '전체';
 
   const [selectedCategory, setSelectedCategory] = useState<Category>('total');
   const [selectedMajor, setSelectedMajor] = useState<string>(currentMajor);
-  const [majors, setMajors] = useState(['전체']);
-  const [majorsView, setMajorsView] = useState(['전체']);
+  const [majorsView, setMajorsView] = useState<string[]>();
 
   const handleMajorFilter = () => {
     push({ query: { ...query, majorType: selectedMajor } }, undefined, {
@@ -42,19 +43,22 @@ const MajorFilter = () => {
   };
 
   useEffect(() => {
-    setMajors(['전체', ...(data?.data || [])]);
-    setMajorsView(['전체', ...(data?.data || [])]);
-  }, [data]);
+    if (!majorsView && !isMajorsEmpty) {
+      setMajorsView(majors);
+    }
+  }, [majors]);
 
   useEffect(() => {
-    if (searchText) {
-      const filteredMajors = [...majors].filter(
-        (major) =>
-          major.includes(searchText) || getRegExSearch(searchText, major)
-      );
-      setMajorsView(filteredMajors);
-    } else {
-      setMajorsView(majors);
+    if (!isMajorsEmpty) {
+      if (searchText) {
+        const filteredMajors = [...majors].filter(
+          (major) =>
+            major.includes(searchText) || getRegExSearch(searchText, major)
+        );
+        setMajorsView(filteredMajors);
+      } else {
+        setMajorsView(majors);
+      }
     }
   }, [searchText]);
 
