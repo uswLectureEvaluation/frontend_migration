@@ -99,7 +99,7 @@ const OptionSort = ({ icon }: { icon?: boolean }) => {
 
       {isOpen && (
         <VStack
-          w="180px"
+          w={icon ? '180px' : '150px'}
           p="5px"
           border="1px solid"
           borderColor="lightgray.400"
