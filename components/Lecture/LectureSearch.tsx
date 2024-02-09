@@ -1,13 +1,22 @@
 import { Text, VStack } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
+import ROUTES from '@/constants/routes';
 import useInput from '@/hooks/useInput';
 
 import SearchInput from '../Common/SearchInput';
 
 const LectureSearch = () => {
-  const { value, onChange } = useInput();
+  const { query, push } = useRouter();
+  const { value, onChange } = useInput(query.searchValue as string);
+
   const search = () => {
-    console.log(value);
+    if (value) {
+      push({
+        pathname: ROUTES.SEARCH,
+        query: { ...query, searchValue: value },
+      });
+    }
   };
 
   const onEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
