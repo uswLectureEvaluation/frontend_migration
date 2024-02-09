@@ -3,8 +3,8 @@ import { LectureOptions, MainLectureResponse } from '@/interfaces/lecture';
 
 import http from './http';
 
-/* eslint-disable import/prefer-default-export */
 export const getMainLecture = async (
+  pageParam: number,
   option: LectureOptions = 'modifiedDate',
   majorType: string = '전체'
 ) => {
@@ -15,7 +15,34 @@ export const getMainLecture = async (
         params: { option, majorType },
       }
     );
-    return response;
+    const nextPage = pageParam + 1;
+    return {
+      nextPage,
+      response,
+    };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getSearchLecture = async (
+  searchValue: string,
+  pageParam: number,
+  option: LectureOptions = 'modifiedDate',
+  majorType: string = '전체'
+) => {
+  try {
+    const response: MainLectureResponse = await http.get(
+      API_URLS.LECTURE.SEARCH,
+      {
+        params: { searchValue, option, majorType, page: pageParam },
+      }
+    );
+    const nextPage = pageParam + 1;
+    return {
+      nextPage,
+      response,
+    };
   } catch (error) {
     console.error(error);
   }

@@ -1,40 +1,72 @@
-import { Flex, VStack } from '@chakra-ui/react';
+/* eslint-disable react/require-default-props */
+import { Box, Flex, VStack } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
-import { useGetMainLectureList } from '@/features/queries';
+import { useGetLectureList } from '@/features/queries';
 import { LectureOptions } from '@/interfaces/lecture';
 
 import LectureCard from './LectureCard';
 
-const LectureList = () => {
+const LectureList = ({ isSearch }: { isSearch?: boolean }) => {
+  const initialPage = 1;
   const { query } = useRouter();
-  const { data: lectures } = useGetMainLectureList(
+  const { data: lectures, ref } = useGetLectureList(
+    !!isSearch,
+    initialPage,
+    query.searchValue as string,
     query.option as LectureOptions,
     query.majorType as string
   );
-  const totalLectures = lectures?.data;
-  const evenLectures = totalLectures?.filter((_, i) => i % 2 !== 0);
-  const oddLectures = totalLectures?.filter((_, i) => i % 2 === 0);
+  const totalLectures = lectures?.pages;
 
   return (
-    <Flex w="100%" gap="16px" justify="space-between">
-      <VStack display={{ base: 'none', md: 'flex' }} w="100%" spacing="16px">
-        {oddLectures?.map((lecture) => (
-          <LectureCard key={lecture.id} lecture={lecture} />
-        ))}
+    <VStack w="100%" spacing="0px">
+      <VStack w="100%" spacing="16px">
+        {totalLectures?.map((pages) => {
+          const lectureData = pages?.response.data;
+          const oddLectures = lectureData?.filter((_, i) => i % 2 === 0);
+          const evenLectures = lectureData?.filter((_, i) => i % 2 !== 0);
+          return (
+            <VStack
+              key={pages?.nextPage}
+              display={{ base: 'none', md: 'flex' }}
+              w="100%"
+              spacing="16px"
+            >
+              <Flex w="100%" gap="16px" justify="space-between">
+                <VStack w="100%" spacing="16px">
+                  {oddLectures?.map((lecture) => (
+                    <LectureCard key={lecture.id} lecture={lecture} />
+                  ))}
+                </VStack>
+                <VStack w="100%" spacing="16px">
+                  {evenLectures?.map((lecture) => (
+                    <LectureCard key={lecture.id} lecture={lecture} />
+                  ))}
+                </VStack>
+              </Flex>
+            </VStack>
+          );
+        })}
       </VStack>
-      <VStack display={{ base: 'none', md: 'flex' }} w="100%" spacing="16px">
-        {evenLectures?.map((lecture) => (
-          <LectureCard key={lecture.id} lecture={lecture} />
+
+      <VStack w="100%" spacing="16px">
+        {totalLectures?.map((pages) => (
+          <VStack
+            key={pages?.nextPage}
+            display={{ base: 'flex', md: 'none' }}
+            w="100%"
+            spacing="16px"
+          >
+            {pages?.response.data.map((lecture) => (
+              <LectureCard key={lecture.id} lecture={lecture} />
+            ))}
+          </VStack>
         ))}
       </VStack>
 
-      <VStack display={{ base: 'flex', md: 'none' }} w="100%" spacing="16px">
-        {totalLectures?.map((lecture) => (
-          <LectureCard key={lecture.id} lecture={lecture} />
-        ))}
-      </VStack>
-    </Flex>
+      {isSearch && <Box ref={ref} />}
+    </VStack>
   );
 };
 
