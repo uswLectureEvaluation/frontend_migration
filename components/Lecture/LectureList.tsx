@@ -28,7 +28,7 @@ const LectureList = ({ isSearch }: { isSearch?: boolean }) => {
   return isLoading ? (
     <LectureListSkeleton />
   ) : (
-    <VStack w="100%" spacing="16px">
+    <VStack w="100%" spacing="0">
       <VStack w="100%" spacing="16px" display={{ base: 'none', md: 'flex' }}>
         {totalLectures?.map((pages) => {
           const lectureData = pages?.response.data;
@@ -62,9 +62,8 @@ const LectureList = ({ isSearch }: { isSearch?: boolean }) => {
           </VStack>
         ))}
       </VStack>
-
       {isSearch && (
-        <Box w="100%" ref={ref}>
+        <Box w="100%" pt="16px" ref={ref}>
           {isFetchingNextPage && <LectureListSkeleton />}
         </Box>
       )}
