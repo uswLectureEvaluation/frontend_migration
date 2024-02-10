@@ -20,7 +20,7 @@ export const useGetLectureList = (
 ) => {
   const { ref, inView } = useInView();
 
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery(
+  const query = useInfiniteQuery(
     isSearch
       ? [LECTURE_SEARCH, searchValue, option, majorType]
       : [LECTURE_MAIN, option, majorType],
@@ -45,11 +45,11 @@ export const useGetLectureList = (
 
   useEffect(() => {
     if (inView) {
-      fetchNextPage();
+      query.fetchNextPage();
     }
-  }, [inView, fetchNextPage]);
+  }, [inView, query.fetchNextPage]);
 
-  return { ref, data, isLoading };
+  return { ...query, ref };
 };
 
 export const useGetMajorTypes = () => {

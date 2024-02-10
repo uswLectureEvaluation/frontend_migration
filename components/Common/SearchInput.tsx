@@ -24,6 +24,7 @@ const SearchInput = ({
     <Input
       p="5px 0"
       h="45px"
+      tabIndex={-1}
       variant="unstyled"
       borderBottom="1.5px solid"
       borderColor="lightgray.800"

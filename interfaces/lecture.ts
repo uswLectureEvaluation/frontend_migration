@@ -6,7 +6,7 @@ export type LectureOptions =
   | 'lectureTotalAvg';
 
 export interface LectureCard {
-  id: string; // Auto Increment
+  id: number; // Auto Increment
   semesterList: string; // 강의년도 + 학기 (ex) "2021-1,2022-1" )
   professor: string; // 교수이름
   majorType: string; // 개설학과

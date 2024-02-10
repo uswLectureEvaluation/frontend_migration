@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import { Flex, Text, useDisclosure, VStack } from '@chakra-ui/react';
 
 import { LectureCard as Lecture } from '@/interfaces/lecture';
@@ -5,7 +6,13 @@ import { LectureCard as Lecture } from '@/interfaces/lecture';
 import Chip from '../Common/Chip';
 import Stars from '../Common/Stars';
 
-const LectureCard = ({ lecture }: { lecture: Lecture }) => {
+const LectureCard = ({
+  lecture,
+  isLoading,
+}: {
+  lecture: Lecture;
+  isLoading?: boolean;
+}) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -16,10 +23,23 @@ const LectureCard = ({ lecture }: { lecture: Lecture }) => {
       borderRadius="10px"
       spacing="0"
     >
-      <VStack w="100%" p="14px 24px" spacing="0">
-        <Flex w="100%" align="center" justify="space-between" lineHeight="80%">
-          <Text fontSize="17.6px">{lecture.lectureName}</Text>
-          <Chip>{lecture.lectureType}</Chip>
+      <VStack
+        w="100%"
+        p="14px 24px"
+        spacing="0"
+        filter={isLoading ? 'blur(4px)' : '0'}
+      >
+        <Flex
+          w="100%"
+          align="center"
+          justify="space-between"
+          lineHeight="1"
+          gap="10px"
+        >
+          <Text fontSize="17.6px" noOfLines={1}>
+            {lecture.lectureName}
+          </Text>
+          <Chip minW="42px">{lecture.lectureType}</Chip>
         </Flex>
         <Text w="100%" fontSize="14px" color="darkgray.400">
           {lecture.majorType} | {lecture.professor}
