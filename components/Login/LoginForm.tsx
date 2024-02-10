@@ -37,12 +37,14 @@ const LoginForm = () => {
             control={control}
             name="loginId"
             type="id"
+            defaultValue=""
             placeholder="아이디"
           />
           <SuwikiInput
             control={control}
             name="password"
             type="password"
+            defaultValue=""
             placeholder="비밀번호"
           />
           <Flex w="100%" justify="flex-end" gap="8px">
