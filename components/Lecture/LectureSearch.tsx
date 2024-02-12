@@ -3,20 +3,28 @@ import { useRouter } from 'next/router';
 
 import ROUTES from '@/constants/routes';
 import useInput from '@/hooks/useInput';
+import useToast from '@/hooks/useToast';
 
 import SearchInput from '../Common/SearchInput';
 
 const LectureSearch = () => {
+  const toast = useToast();
+
   const { query, push } = useRouter();
   const { value, onChange } = useInput(query.searchValue as string);
 
   const search = () => {
-    if (value) {
-      push({
-        pathname: ROUTES.SEARCH,
-        query: { ...query, searchValue: value },
+    if (value.length < 2) {
+      return toast({
+        type: 'warning',
+        title: '최소 글자 수 제한',
+        description: '최소 2글자 이상 입력되어야 검색할 수 있습니다.',
       });
     }
+    push({
+      pathname: ROUTES.SEARCH,
+      query: { ...query, searchValue: value },
+    });
   };
 
   const onEnterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
