@@ -5,6 +5,7 @@ import LectureList from '@/components/Lecture/LectureList';
 import LectureSearch from '@/components/Lecture/LectureSearch';
 import MajorFilter from '@/components/Lecture/MajorFilter';
 import OptionSort from '@/components/Lecture/OptionSort';
+import TotalLectureLength from '@/components/Lecture/TotalLectureLength';
 import SEO from '@/components/SEO';
 
 const Search = ({ searchValue }: { searchValue: string }) => (
@@ -19,9 +20,12 @@ const Search = ({ searchValue }: { searchValue: string }) => (
     <VStack w={{ base: '90%', lg: '60%' }} pt="80px" spacing="30px">
       <LectureSearch />
       <VStack w="100%" pb="10px" spacing="10px" align="flex-start">
-        <Flex gap="5px" align="center">
-          <MajorFilter />
-          <OptionSort />
+        <Flex w="100%" justify="space-between" align="center">
+          <Flex gap="5px" align="center">
+            <MajorFilter />
+            <OptionSort />
+          </Flex>
+          <TotalLectureLength />
         </Flex>
         <LectureList isSearch />
       </VStack>

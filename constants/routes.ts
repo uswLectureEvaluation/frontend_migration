@@ -4,6 +4,7 @@ const ROUTES = {
   SIGNUP: '/signup',
   INFO: '/info',
   SEARCH: '/search',
+  LECTURE: '/lecture',
   NOTICE: '/notice',
 };
 
