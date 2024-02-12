@@ -8,15 +8,28 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
 
+import { isLoginState } from '@/atoms/auth';
 import ROUTES from '@/constants/routes';
 import useClickOutside from '@/hooks/useClickOutside';
 import { List, XIcon } from '@/public/icon/icon';
+import { removeTokenAll } from '@/utils/tokenManeger';
 
 const Header = () => {
-  const { pathname } = useRouter();
   const mobileMenu = useDisclosure();
+
+  const { pathname } = useRouter();
   const { ref } = useClickOutside(mobileMenu.onClose);
+
+  const [isLogin] = useRecoilState(isLoginState);
+
+  const logout = () => {
+    if (isLogin) {
+      removeTokenAll();
+      window.location.reload();
+    }
+  };
 
   return (
     <>
@@ -54,10 +67,20 @@ const Header = () => {
             gap="30px"
             align="center"
           >
-            <Link href={ROUTES.NOTICE}>공지사항</Link>
-            <Link href={ROUTES.LOGIN}>로그인</Link>
-            <Link href={ROUTES.SIGNUP}>
-              <Text color="main.blue">회원가입</Text>
+            <Link href={ROUTES.NOTICE} passHref>
+              공지사항
+            </Link>
+            {isLogin ? (
+              <Text cursor="pointer" onClick={logout}>
+                로그아웃
+              </Text>
+            ) : (
+              <Link href={ROUTES.LOGIN} passHref>
+                로그인
+              </Link>
+            )}
+            <Link href={isLogin ? ROUTES.INFO : ROUTES.SIGNUP} passHref>
+              <Text color="main.blue">{isLogin ? '내 정보' : '회원가입'}</Text>
             </Link>
           </Flex>
           <Icon
@@ -104,7 +127,7 @@ const Header = () => {
             fontSize="15px"
             fontWeight={pathname === ROUTES.LOGIN ? '500' : '400'}
           >
-            로그인
+            {isLogin ? '로그아웃' : '로그인'}
           </Text>
         </Link>
         <Link href={ROUTES.SIGNUP} passHref>
@@ -113,7 +136,7 @@ const Header = () => {
             fontWeight={pathname === ROUTES.SIGNUP ? '500' : '400'}
             color="main.blue"
           >
-            회원가입
+            {isLogin ? '내 정보' : '회원가입'}
           </Text>
         </Link>
       </VStack>

@@ -5,6 +5,7 @@ import { useMutation } from 'react-query';
 
 import { login } from '@/apis/user';
 import { TOKEN_KEY } from '@/constants/auth';
+import ROUTES from '@/constants/routes';
 import useToast from '@/hooks/useToast';
 import { APIErrorResponse } from '@/interfaces/suwiki';
 import { UserLoginFormValues } from '@/interfaces/user';
@@ -20,6 +21,7 @@ export const useLogin = (onSuccess?: () => void) => {
           if (onSuccess) {
             setToken(TOKEN_KEY, data.AccessToken);
             onSuccess();
+            window.location.href = ROUTES.MAIN;
           }
         }
       },
