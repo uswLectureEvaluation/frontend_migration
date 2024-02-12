@@ -19,7 +19,7 @@ const LectureCard = ({
 
   return (
     <Link
-      href={`${ROUTES.LECTURE}?id=${lecture.id}`}
+      href={`${ROUTES.LECTURE}/${lecture.id}`}
       passHref
       style={{ width: '100%' }}
     >
