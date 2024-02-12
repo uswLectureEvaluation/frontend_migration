@@ -5,7 +5,7 @@ export interface Toast {
   title: string;
   description: string;
   description2?: string;
-  type: 'primary' | 'success' | 'error' | 'warning' | 'info';
+  type: 'success' | 'error' | 'warning' | 'info';
   duration?: number;
   selfRemove?: Function;
 }

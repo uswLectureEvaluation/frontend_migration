@@ -3,8 +3,11 @@ import type { AppProps } from 'next/app';
 import { useState } from 'react';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { RecoilRoot } from 'recoil';
 
 import Header from '@/components/Header';
+import ToastList from '@/components/ToastList';
+import Fonts from '@/public/fonts';
 import { colorTheme } from '@/public/theme/theme';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -22,15 +25,19 @@ export default function App({ Component, pageProps }: AppProps) {
   );
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <ChakraProvider theme={colorTheme}>
-          <Box w="100%" pt="79px">
-            <Header />
-            <Component {...pageProps} />
-          </Box>
-        </ChakraProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </Hydrate>
+      <RecoilRoot>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ChakraProvider theme={colorTheme}>
+            <Fonts />
+            <Box w="100%" pt="79px">
+              <ToastList />
+              <Header />
+              <Component {...pageProps} />
+            </Box>
+          </ChakraProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Hydrate>
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }
