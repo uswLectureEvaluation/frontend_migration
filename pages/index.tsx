@@ -29,7 +29,7 @@ const Home = () => (
         </Flex>
         <LectureList />
       </VStack>
-      <Link href={ROUTES.SEARCH} passHref>
+      <Link href={ROUTES.LECTURE} passHref>
         <SuwikiButton w="300px">더 보러 가기</SuwikiButton>
       </Link>
     </VStack>

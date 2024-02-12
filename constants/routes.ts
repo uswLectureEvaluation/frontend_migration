@@ -3,7 +3,6 @@ const ROUTES = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   INFO: '/info',
-  SEARCH: '/search',
   LECTURE: '/lecture',
   NOTICE: '/notice',
 };

@@ -22,7 +22,7 @@ const LectureSearch = () => {
       });
     }
     push({
-      pathname: ROUTES.SEARCH,
+      pathname: ROUTES.LECTURE,
       query: { ...query, searchValue: value },
     });
   };
