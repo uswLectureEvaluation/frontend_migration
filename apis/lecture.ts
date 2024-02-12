@@ -1,5 +1,9 @@
 import API_URLS from '@/constants/apiUrls';
-import { LectureOptions, MainLectureResponse } from '@/interfaces/lecture';
+import {
+  LectureDetailResponse,
+  LectureOptions,
+  MainLectureResponse,
+} from '@/interfaces/lecture';
 
 import http from './http';
 
@@ -43,6 +47,40 @@ export const getSearchLecture = async (
       nextPage,
       response,
     };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLectureDetail = async (lectureId: string) => {
+  try {
+    const response: LectureDetailResponse = await http.get(
+      API_URLS.LECTURE.DETAIL,
+      {
+        params: { lectureId },
+      }
+    );
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLectureDetailServer = async (
+  lectureId: string,
+  token: string
+) => {
+  try {
+    const response: LectureDetailResponse = await http.get(
+      API_URLS.LECTURE.DETAIL,
+      {
+        params: { lectureId },
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+    return response;
   } catch (error) {
     console.error(error);
   }

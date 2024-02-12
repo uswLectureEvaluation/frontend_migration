@@ -2,9 +2,14 @@ import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery, useQuery } from 'react-query';
 
-import { getMainLecture, getSearchLecture } from '@/apis/lecture';
+import {
+  getLectureDetail,
+  getMainLecture,
+  getSearchLecture,
+} from '@/apis/lecture';
 import { getMajorType } from '@/apis/suwiki';
 import {
+  LECTURE_DETAIL,
   LECTURE_MAIN,
   LECTURE_SEARCH,
   MAJOR_TYPES,
@@ -50,6 +55,18 @@ export const useGetLectureList = (
   }, [inView, query.fetchNextPage]);
 
   return { ...query, ref };
+};
+
+export const useGetLectureDetail = (lectureId: string) => {
+  const query = useQuery(
+    [LECTURE_DETAIL, lectureId],
+    () => getLectureDetail(lectureId),
+    {
+      enabled: !!lectureId,
+    }
+  );
+
+  return query;
 };
 
 export const useGetMajorTypes = () => {

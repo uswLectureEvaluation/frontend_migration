@@ -22,3 +22,23 @@ export interface MainLectureResponse {
   count: number;
   data: LectureCard[];
 }
+
+export interface LectureDetailResponse {
+  data: {
+    id: number;
+    lectureDifficultyAvg: number;
+    lectureHomeworkAvg: number;
+    lectureHoneyAvg: number;
+    lectureLearningAvg: number;
+    lectureName: string;
+    lectureSatisfactionAvg: number;
+    lectureTeamAvg: number;
+    lectureTotalAvg: number;
+    lectureType: string;
+    majorType: string;
+    professor: string;
+    semesterList: string;
+  };
+  message: string;
+  statusCode: number;
+}

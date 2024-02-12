@@ -1,10 +1,19 @@
+/* eslint-disable no-param-reassign */
 import axios, { AxiosInstance } from 'axios';
+
+import { getAccessToken } from '@/utils/tokenManeger';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const setInterceptor = (instance: AxiosInstance) => {
   instance.interceptors.request.use(
-    (config) => config,
+    (config) => {
+      const token = getAccessToken();
+      if (token) {
+        config.headers.Authorization = token;
+      }
+      return config;
+    },
     (error) => Promise.reject(error)
   );
   instance.interceptors.response.use(

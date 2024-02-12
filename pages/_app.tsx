@@ -2,6 +2,7 @@ import { Box, ChakraProvider } from '@chakra-ui/react';
 import type { AppContext, AppProps } from 'next/app';
 import cookies from 'next-cookies';
 import { useState } from 'react';
+import { CookiesProvider } from 'react-cookie';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
@@ -33,21 +34,23 @@ export default function App({ Component, pageProps }: AppProps) {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot initializeState={initialState}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <ChakraProvider theme={colorTheme}>
-            <Fonts />
-            <Box w="100%" pt="79px">
-              <ToastList />
-              <Header />
-              <Component {...pageProps} />
-            </Box>
-          </ChakraProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-        </Hydrate>
-      </RecoilRoot>
-    </QueryClientProvider>
+    <CookiesProvider>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot initializeState={initialState}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <ChakraProvider theme={colorTheme}>
+              <Fonts />
+              <Box w="100%" pt="79px">
+                <ToastList />
+                <Header />
+                <Component {...pageProps} />
+              </Box>
+            </ChakraProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </Hydrate>
+        </RecoilRoot>
+      </QueryClientProvider>
+    </CookiesProvider>
   );
 }
 
