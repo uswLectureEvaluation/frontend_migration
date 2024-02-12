@@ -13,7 +13,7 @@ import SuwikiInput from '../Common/Input';
 const LoginForm = () => {
   const { push } = useRouter();
   const { control, handleSubmit } = useForm<UserLoginFormValues>();
-  const { mutate: login } = useLogin(() => {
+  const { mutate: login, isLoading } = useLogin(() => {
     push(ROUTES.MAIN);
   });
 
@@ -39,6 +39,9 @@ const LoginForm = () => {
             type="id"
             defaultValue=""
             placeholder="아이디"
+            rules={{
+              required: true,
+            }}
           />
           <SuwikiInput
             control={control}
@@ -46,6 +49,9 @@ const LoginForm = () => {
             type="password"
             defaultValue=""
             placeholder="비밀번호"
+            rules={{
+              required: true,
+            }}
           />
           <Flex w="100%" justify="flex-end" gap="8px">
             <Link href="/find-id" passHref>
@@ -60,7 +66,7 @@ const LoginForm = () => {
             </Link>
           </Flex>
         </VStack>
-        <SuwikiButton w="100%" type="submit">
+        <SuwikiButton w="100%" type="submit" isDisabled={isLoading}>
           로그인
         </SuwikiButton>
       </VStack>
