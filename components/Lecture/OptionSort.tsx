@@ -86,6 +86,7 @@ const OptionSort = ({ icon }: { icon?: boolean }) => {
         <Text
           fontSize={icon ? '14px' : '16px'}
           color={icon ? 'unset' : 'main.blue'}
+          noOfLines={1}
         >
           {currentOptionLabel}
         </Text>
