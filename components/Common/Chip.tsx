@@ -6,7 +6,7 @@ interface ChipProps extends BoxProps {
 
 const Chip = ({ children, ...props }: ChipProps) => (
   <Box
-    p="5px 10px"
+    p="3px 10px"
     bg="lightgray.200"
     borderRadius="10px"
     fontSize="12px"

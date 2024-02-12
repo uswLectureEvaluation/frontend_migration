@@ -29,13 +29,7 @@ const LectureCard = ({
         spacing="0"
         filter={isLoading ? 'blur(4px)' : '0'}
       >
-        <Flex
-          w="100%"
-          align="center"
-          justify="space-between"
-          lineHeight="1"
-          gap="10px"
-        >
+        <Flex w="100%" align="center" justify="space-between" gap="10px">
           <Text fontSize="17.6px" noOfLines={1}>
             {lecture.lectureName}
           </Text>
