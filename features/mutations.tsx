@@ -4,7 +4,7 @@ import { AxiosError, isAxiosError } from 'axios';
 import { useMutation } from 'react-query';
 
 import { login } from '@/apis/user';
-import { TOKEN_KEY } from '@/constants/auth';
+import { REFRESH_KEY, TOKEN_KEY } from '@/constants/auth';
 import ROUTES from '@/constants/routes';
 import useToast from '@/hooks/useToast';
 import { APIErrorResponse } from '@/interfaces/suwiki';
@@ -20,6 +20,7 @@ export const useLogin = (onSuccess?: () => void) => {
         if (data) {
           if (onSuccess) {
             setToken(TOKEN_KEY, data.AccessToken);
+            setToken(REFRESH_KEY, data.RefreshToken);
             onSuccess();
             window.location.href = ROUTES.MAIN;
           }

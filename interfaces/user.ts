@@ -5,4 +5,5 @@ export interface UserLoginFormValues {
 
 export interface UserLoginResponse {
   AccessToken: string;
+  RefreshToken: string;
 }
