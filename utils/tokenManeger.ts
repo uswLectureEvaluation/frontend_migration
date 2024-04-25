@@ -1,10 +1,13 @@
 import { Cookies } from 'react-cookie';
 
-import { TOKEN_KEY } from '@/constants/auth';
+import { REFRESH_KEY, TOKEN_KEY } from '@/constants/auth';
 
 const cookies = new Cookies();
 
-export const setToken = (key: typeof TOKEN_KEY, token: string) => {
+export const setToken = (
+  key: typeof TOKEN_KEY | typeof REFRESH_KEY,
+  token: string
+) => {
   cookies.set(key, token, {
     path: '/',
   });
