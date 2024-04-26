@@ -13,6 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Generate Environment Variables File for suwiki-web
+        run: |
+          echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" >> .env
+
       - name: Check commit message for 'deploy'
         run: |
           if [[ $(git log -1 --pretty=%B) == *deploy* ]]; then
