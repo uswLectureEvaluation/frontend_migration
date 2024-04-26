@@ -16,6 +16,8 @@ jobs:
       - name: Generate Environment Variables File for suwiki-web
         run: |
           echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" > .env
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
 
       - name: Check commit message for 'deploy'
         run: |
