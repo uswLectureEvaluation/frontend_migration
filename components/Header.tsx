@@ -57,7 +57,7 @@ const Header = () => {
           <Link href="/" passHref>
             <Image
               alt="logo"
-              src="/icon/logo.svg"
+              src="/icon/LOGO.svg"
               width={{ base: 110, sm: 120 }}
               height={38}
             />
