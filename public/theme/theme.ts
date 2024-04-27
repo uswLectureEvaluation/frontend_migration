@@ -10,6 +10,7 @@ const colors = {
   main: {
     blue: '#346CFD',
     violet: '#7800FF',
+    purple: '#6200EE',
   },
   lightgray: {
     200: '#EEEEEE',

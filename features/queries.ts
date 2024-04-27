@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useInfiniteQuery, useQuery } from 'react-query';
+import { useRecoilValue } from 'recoil';
 
 import {
   getLectureDetail,
@@ -8,6 +9,7 @@ import {
   getSearchLecture,
 } from '@/apis/lecture';
 import { getMajorType } from '@/apis/suwiki';
+import { isLoginState } from '@/atoms/auth';
 import {
   LECTURE_DETAIL,
   LECTURE_MAIN,
@@ -58,11 +60,12 @@ export const useGetLectureList = (
 };
 
 export const useGetLectureDetail = (lectureId: string) => {
+  const isLogin = useRecoilValue(isLoginState);
   const query = useQuery(
     [LECTURE_DETAIL, lectureId],
     () => getLectureDetail(lectureId),
     {
-      enabled: !!lectureId,
+      enabled: !!lectureId && isLogin,
     }
   );
 
