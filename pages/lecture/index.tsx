@@ -17,7 +17,7 @@ const Search = ({ searchValue }: { searchValue: string }) => (
           : '수위키 - 강의평가의 모든 것, SUWIKI'
       }
     />
-    <VStack w={{ base: '90%', lg: '60%' }} pt="80px" spacing="30px">
+    <VStack w={{ base: '90%', lg: '60%' }} pt="50px" spacing="30px">
       <LectureSearch />
       <VStack w="100%" pb="10px" spacing="10px" align="flex-start">
         <Flex w="100%" justify="space-between" align="center">
