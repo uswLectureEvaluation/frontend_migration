@@ -13,12 +13,15 @@ export const setToken = (
   });
 };
 
-export const removeToken = (key: typeof TOKEN_KEY) => {
+export const removeToken = (key: typeof TOKEN_KEY | typeof REFRESH_KEY) => {
   cookies.remove(key, { path: '/' });
 };
 
 export const removeTokenAll = () => {
   removeToken(TOKEN_KEY);
+  removeToken(REFRESH_KEY);
 };
 
 export const getAccessToken = () => cookies.get(TOKEN_KEY);
+
+export const getRefreshToken = () => cookies.get(REFRESH_KEY);

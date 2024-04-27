@@ -1,7 +1,8 @@
 // API URL 목록
 const API_URLS = {
   USER: {
-    LOGIN: '/user/client-login',
+    LOGIN: '/user/login',
+    REFRESH: '/user/refresh',
   },
   LECTURE: {
     MAIN: '/lecture/all',
