@@ -10,9 +10,9 @@ import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { isLoginState } from '@/atoms/auth';
 import Header from '@/components/Header';
 import ToastList from '@/components/ToastList';
+import { TOKEN_KEY } from '@/constants/auth';
 import Fonts from '@/public/fonts';
 import { colorTheme } from '@/public/theme/theme';
-import { checkTokenExpiration, tokenRefresh } from '@/utils/jwtDecode';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
@@ -56,20 +56,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
 App.getInitialProps = async (appContext: AppContext) => {
   const { ctx } = appContext;
-  const { accessToken, refreshToken } = cookies(ctx);
-
-  if (!accessToken || !refreshToken) {
-    return { pageProps: { isLogin: false } };
-  }
-
-  const isTokenExpired = checkTokenExpiration(accessToken);
-
-  if (isTokenExpired) {
-    const newTokens = await tokenRefresh(refreshToken);
-    if (!newTokens) {
-      return { pageProps: { isLogin: false } };
-    }
-  }
-
-  return { pageProps: { isLogin: true } };
+  const values = cookies(ctx);
+  const accessToken = values[TOKEN_KEY];
+  const isLogin = !!accessToken;
+  return { pageProps: { isLogin } };
 };
