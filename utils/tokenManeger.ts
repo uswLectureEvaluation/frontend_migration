@@ -25,3 +25,8 @@ export const removeTokenAll = () => {
 export const getAccessToken = () => cookies.get(TOKEN_KEY);
 
 export const getRefreshToken = () => cookies.get(REFRESH_KEY);
+
+export const logout = () => {
+  removeTokenAll();
+  window.location.href = '/';
+};

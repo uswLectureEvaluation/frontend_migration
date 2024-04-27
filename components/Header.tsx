@@ -14,7 +14,7 @@ import { isLoginState } from '@/atoms/auth';
 import ROUTES from '@/constants/routes';
 import useClickOutside from '@/hooks/useClickOutside';
 import { List, XIcon } from '@/public/icon/icon';
-import { removeTokenAll } from '@/utils/tokenManeger';
+import { logout } from '@/utils/tokenManeger';
 
 const Header = () => {
   const mobileMenu = useDisclosure();
@@ -24,10 +24,9 @@ const Header = () => {
 
   const [isLogin] = useRecoilState(isLoginState);
 
-  const logout = () => {
+  const handleClickLogout = () => {
     if (isLogin) {
-      removeTokenAll();
-      window.location.reload();
+      logout();
     }
   };
 
@@ -71,7 +70,7 @@ const Header = () => {
               공지사항
             </Link>
             {isLogin ? (
-              <Text cursor="pointer" onClick={logout}>
+              <Text cursor="pointer" onClick={handleClickLogout}>
                 로그아웃
               </Text>
             ) : (
