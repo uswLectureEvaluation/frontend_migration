@@ -11,16 +11,3 @@ export const login = async (formData: UserLoginFormValues) => {
   );
   return response;
 };
-
-export const refresh = async (refreshToken: string) => {
-  const response: UserLoginResponse = await http.post(
-    API_URLS.USER.REFRESH,
-    undefined,
-    {
-      headers: {
-        Authorization: refreshToken,
-      },
-    }
-  );
-  return response;
-};
